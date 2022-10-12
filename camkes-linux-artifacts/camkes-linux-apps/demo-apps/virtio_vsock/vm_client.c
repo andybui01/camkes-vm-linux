@@ -4,7 +4,7 @@
 #include <assert.h>
 #include <stdio.h>
 
-#define VM0_CID 3
+#define VM2_CID 3
 
 int main()
 {
@@ -14,18 +14,18 @@ int main()
 	memset(&addr, 0, sizeof(struct sockaddr_vm));
 	addr.svm_family = AF_VSOCK;
 	addr.svm_port = 1234;
-	addr.svm_cid = VM0_CID;
+	addr.svm_cid = VM2_CID;
 
     int err;
 
-    printf("VSOCK LINUX: connecting\n");
+    printf("VSOCK CLIENT: connecting\n");
 	err = connect(s, &addr, sizeof(struct sockaddr_vm));
     if (err) {
         printf("Error connecting\n");
         return -1;
     }
 
-    printf("VSOCK LINUX: sending\n");
+    printf("VSOCK CLIENT: sending\n");
 	err = send(s, "Hello, world!", 13, 0);
     assert(err == 13);
 
